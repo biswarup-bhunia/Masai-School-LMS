@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai | Admin</title>
+    <link rel="stylesheet" href="style/admin.css">
+    <link rel="stylesheet" href="style/adminNavbar.css">
+</head>
+
+<body onload="append(data)">
+    <div id="navbar">
+        <div id="navbar_div">
+            <img id="logo" src="https://www.masaischool.com/img/navbar/logo.svg" onclick="window.location.href='admin.html'">
+            <div onclick="window.location.href='lecture.html'">Lectures</div>
+            <div onclick="window.location.href='Assignments.html'">Assignments</div>
+            <div>Quizzes</div>
+            <div>Tickets</div>
+            <div>Discussions</div>
+            <div>Notifications</div>
+            <div>Electives</div>
+        </div>
+        <div id="navbar_div2">
+            <div id="name"></div>
+            <button id="logout" onclick="window.location.href='login.html'">LOG OUT</button>
+        </div>
+    </div>
+    <div id="sub_navbar">
+        <div>Today's Schedule</div>
+        <div>
+            <button id="create" onclick="window.location.href='create.html'">Create Class</button>
+            <button id="student_list" onclick="window.location.href='studentlist.html'">Student List</button>
+        </div>
+    </div>
+    <div id="container"></div>
+</body>
+
+</html>
+<script src="script/adminNavbar.js"></script>
+<script>
+
+    let lec=JSON.parse(localStorage.getItem("lecture"))||[];
+    let assign=JSON.parse(localStorage.getItem("assignment"))||[];
+    let data=[...lec,...assign];
+    
+
+    append=(data)=>{
+        let container=document.getElementById("container");
+        container.innerHTML=null;
+        data.forEach((el,i)=>{
+            let time=document.createElement("h3");
+            time.innerText=el.time;
+            let type=document.createElement("p");
+            type.innerText=el.type;
+            let divs=document.createElement("div");
+            divs.append(time,type);
+            divs.setAttribute("class","color_box")
+            divs.style.color="white";
+            
+            let subject=document.createElement("h2");
+            subject.innerText=`${el.subject} ${el.date}`
+            let name=document.createElement("p");
+            name.innerText=`${el.instructorname} Starting at ${el.time}`;
+            if(el.type=='Lecture'){
+                divs.style.backgroundColor="#6366f1";
+                subject.style.color="#6366f1"
+            }else{
+                divs.style.backgroundColor="#d946ef";
+                subject.style.color="#d946ef"
+            }       
+            let div1s=document.createElement("div");
+            div1s.append(subject,name);
+            let div2s=document.createElement("div");
+            div2s.setAttribute("class","box");
+            div2s.append(divs,div1s)
+            container.append(div2s);
+        })
+    }
+
+
+</script>
+

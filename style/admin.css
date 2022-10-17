@@ -1,0 +1,24 @@
+#container{
+    width:80%;
+    margin:auto;
+    margin-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+   
+}
+#container>div{
+    display: flex;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    padding:20px;
+    line-height: 20px;
+    align-items: center;
+}
+.color_box{
+    width:12%;
+    padding:20px ;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 25px;
+}
